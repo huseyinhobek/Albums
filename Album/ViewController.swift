@@ -12,10 +12,10 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var viewModel: AlbumViewModel?
-    let menuView = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 1000))
-    let aboutMeButton = UIButton(frame: CGRect(x: 50, y: 750, width: 150, height: 40))
-    let commentsButton = UIButton(frame: CGRect(x: 40, y: 400, width: 150, height: 30))
-    
+    let menuView = UIView(frame: CGRect(x: 0, y: 100, width: 250, height: 718))
+    let aboutMeButton = UIButton(frame: CGRect(x: 50, y: 650, width: 150, height: 40))
+    let commentsButton = UIButton(frame: CGRect(x: 40, y: 300, width: 150, height: 30))
+    //MARK: açılır pencerenin backgroundu açılış logosu yap
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         fetchAlbumList()
-        tableView.backgroundColor = UIColor.black
+//        tableView.backgroundColor = UIColor.black
         view.addSubview(menuView)
         // MARK: HamburgerMenu
         menuView.backgroundColor = UIColor.lightGray
@@ -81,7 +81,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         label.text = viewModel?.albums[section].title
         label.textColor = UIColor.red
         label.textAlignment = .center
-        label.backgroundColor = .black
+//        label.backgroundColor = .black
         return label
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -95,7 +95,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let album = viewModel?.albums[indexPath.section]
         let model = viewModel?.albumList.filter { $0.album.id == album?.id }.first
         cell.configCell(model: model!)
-        cell.contentView.backgroundColor = UIColor.black
+//        cell.contentView.backgroundColor = UIColor.black
         return cell
     }
 }
