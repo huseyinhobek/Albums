@@ -24,7 +24,6 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         fetchAlbumList()
-//        tableView.backgroundColor = UIColor.black
         view.addSubview(menuView)
         // MARK: HamburgerMenu
         menuView.backgroundColor = UIColor.lightGray
@@ -63,7 +62,6 @@ class ViewController: UIViewController {
             menuView.isHidden = true
         }
     }
-    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -78,28 +76,29 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.text = viewModel?.albums[section].title
         label.textColor = UIColor.red
         label.textAlignment = .center
-//        label.backgroundColor = .black
         return label
     }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel?.albums.count ?? 5
-    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel?.albumList.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath) as! AlbumCell
-        let album = viewModel?.albums[indexPath.section]
-        let model = viewModel?.albumList.filter { $0.album.id == album?.id }.first
-        cell.configCell(model: model!)
-//        cell.contentView.backgroundColor = UIColor.black
+        let album = viewModel?.albumList[indexPath.row]
+        cell.configCell(model: album!)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let commentsVC = storyboard.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
+        
+        let selectedAlbum = self.viewModel?.albumList[indexPath.row]
+        commentsVC.comments = selectedAlbum?.comments ?? []
+        
+        self.navigationController?.pushViewController(commentsVC, animated: true)
+    }
+    
 }
-
-
-
-

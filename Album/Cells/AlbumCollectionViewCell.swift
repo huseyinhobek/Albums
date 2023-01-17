@@ -13,7 +13,6 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     var viewModel: AlbumViewModel?
     
-    
     func configCollectionViewCell(model: PhotoElement) {
         imageView.contentMode = .scaleAspectFill
         

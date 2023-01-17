@@ -55,7 +55,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="commentLabel" destination="bl1-rO-MPO" id="cEa-kn-cYo"/>
-                <outlet property="emailLabel" destination="bl1-rO-MPO" id="2w4-WY-cu5"/>
+                <outlet property="emailLabel" destination="mh0-VX-eJ2" id="BAh-08-y54"/>
             </connections>
             <point key="canvasLocation" x="52.671755725190835" y="49.647887323943664"/>
         </tableViewCell>
